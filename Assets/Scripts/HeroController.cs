@@ -7,9 +7,13 @@ public class HeroController : MonoBehaviour
     Rigidbody2D myBody;
     public float speed = 45.0f;
 
+    int score;
+    GameController gameController;
+
 	void Start ()
     {
         myBody = GetComponent<Rigidbody2D>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 	}
 	
 	void Update ()
@@ -25,6 +29,8 @@ public class HeroController : MonoBehaviour
         if(other.tag == "Gem")
         {
             Destroy(other.gameObject);
+            score++;
+            gameController.ChangeScore(score);
         }
     }
 
